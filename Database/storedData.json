@@ -1,0 +1,22 @@
+[
+  {
+    "pid": 0,
+    "pname": "Enter Patient Name:",
+    "phone": "Enter phone Number:"
+  },
+  {
+    "pid": 1,
+    "pname": "sudeep",
+    "phone": "7895745878"
+  },
+  {
+    "pid": 2,
+    "pname": "kiccha",
+    "phone": "5214565554"
+  },
+  {
+    "pid": 3,
+    "pname": "Madna",
+    "phone": "7984525211"
+  }
+]
