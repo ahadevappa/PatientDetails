@@ -10,11 +10,12 @@ namespace PatientDetails
 {
     public class Varifiacation
     {
-        public static void varify(int eid)
+        public static void varify(string eid)
         {
             Appintments ap=new Appintments();
             Patients p = new Patients();
-            string file=File.ReadAllText(@"C:\Users\VSOFT\Desktop\Mahadev\PatientDetails\Database\Appointments.json");
+            string Appoint = Environment.GetEnvironmentVariable("Appoints");
+            string file=File.ReadAllText(Appoint);
 
             List<Appintments> date = JsonConvert.DeserializeObject<List<Appintments>>(file);
             string JsonDB = Environment.GetEnvironmentVariable("storePatient");
@@ -36,7 +37,7 @@ namespace PatientDetails
 
                     date.Add(ap);
                     string appoint=JsonConvert.SerializeObject(date, Formatting.Indented);
-                    File.WriteAllText(@"C:\Users\VSOFT\Desktop\Mahadev\PatientDetails\Database\Appointments.json", appoint);
+                    File.WriteAllText(Appoint, appoint);
 
                 }
 
