@@ -8,15 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Patients Data\Appintments.cs" />
+    <Compile Remove="Management\Appintments.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DoctorList\" />
   </ItemGroup>
 
 </Project>
