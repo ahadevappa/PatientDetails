@@ -12,7 +12,7 @@ namespace PatientDetails
     {
         public void opn(int selected)
         {
-            Register rg=new Register();
+            Operation rg =new Operation();
             switch (selected)
             {
                 case 1:

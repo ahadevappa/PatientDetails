@@ -7,14 +7,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace PatientDetails
 {
-    class Receipt
+    class Management
     {
         public static void Main(string[] args)
         {
-
             Num n = new Num();
             string[] menuItems = {
             "Register Patient",
@@ -23,30 +24,37 @@ namespace PatientDetails
             "Exit"
         };
             int selectedIndex = 0;
+            int lastSelectedIndex = -1;
             Arrow arrowHandler = new Arrow();
             bool running = true;
 
+            Console.CursorVisible = false;
+            Console.Clear();
+            DisplayMenu(menuItems, selectedIndex); 
+
             while (running)
             {
-                Console.Clear();
-                DisplayMenu(menuItems, selectedIndex);
-
-                ConsoleKeyInfo keyInfo = Console.ReadKey(true); 
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 ConsoleKey key = keyInfo.Key;
 
                 if (key == ConsoleKey.UpArrow || key == ConsoleKey.DownArrow)
                 {
                     selectedIndex = arrowHandler.HandleArrowKey(key, menuItems, selectedIndex);
+
+                    if (selectedIndex != lastSelectedIndex)
+                    {
+                        Console.SetCursorPosition(0, 0);
+                        DisplayMenu(menuItems, selectedIndex);
+                        lastSelectedIndex = selectedIndex;
+                    }
                 }
                 else if (key == ConsoleKey.Enter)
                 {
-                    
                     Console.Clear();
                     Console.WriteLine($"You selected: {menuItems[selectedIndex]}");
-                    n.opn(selectedIndex+1);
+                    n.opn(selectedIndex + 1);
 
-
-                    if (selectedIndex == menuItems.Length - 1) 
+                    if (selectedIndex == menuItems.Length - 1)
                     {
                         running = false;
                     }
@@ -54,19 +62,20 @@ namespace PatientDetails
                     {
                         Console.WriteLine("Press any key to return to menu...");
                         Console.ReadKey(true);
+                        Console.Clear();
+                        DisplayMenu(menuItems, selectedIndex);
+                        lastSelectedIndex = -1; 
                     }
                 }
                 else if (key >= ConsoleKey.D1 && key <= ConsoleKey.D4)
                 {
-                    int userChoice = key - ConsoleKey.D0; 
-
+                    int userChoice = key - ConsoleKey.D0;
                     if (userChoice >= 1 && userChoice <= menuItems.Length)
                     {
-                         selectedIndex = userChoice - 1; 
+                        selectedIndex = userChoice - 1;
                         Console.Clear();
                         Console.WriteLine($"You selected: {menuItems[selectedIndex]}");
-
-                        n.opn(userChoice); 
+                        n.opn(userChoice);
 
                         if (userChoice == menuItems.Length)
                         {
@@ -76,10 +85,12 @@ namespace PatientDetails
                         {
                             Console.WriteLine("Press any key to return to menu...");
                             Console.ReadKey(true);
+                            Console.Clear();
+                            DisplayMenu(menuItems, selectedIndex);
+                            lastSelectedIndex = -1;
                         }
                     }
                 }
-
                 else if (key == ConsoleKey.Escape)
                 {
                     Console.Clear();
@@ -88,19 +99,20 @@ namespace PatientDetails
                 }
             }
 
+            Console.CursorVisible = true;
             Console.WriteLine("Program Ended. Press any key...");
             Console.ReadKey();
         }
+
         static void DisplayMenu(string[] items, int selectedIndex)
         {
-          
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("=== Hospital Management Menu ===");
             Console.ResetColor();
 
+
             for (int i = 0; i < items.Length; i++)
             {
-                
                 if (i == selectedIndex)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;

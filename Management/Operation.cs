@@ -8,25 +8,18 @@ using System.Threading.Tasks;
 
 namespace PatientDetails.Patients_Data
 {
-    public class Register
+    public class Operation
     {
-
         public void register()
         {
             Patients p = new Patients();
             string JsonDB = Environment.GetEnvironmentVariable("storePatient");
             string details = File.ReadAllText(JsonDB);
-            List<Patients> list = JsonConvert.DeserializeObject<List<Patients>>(details);
-            List<Patients> list1 = new List<Patients>();
-            if (File.Exists(JsonDB))
-            {
-                string data = File.ReadAllText(JsonDB);
-                list1 = JsonConvert.DeserializeObject<List<Patients>>(data);
-
-                String id = list1.Max(a => a.pid);
+            List<Patients> list1 = JsonConvert.DeserializeObject<List<Patients>>(details);
+            String id = list1.Max(a => a.pid);
                 int iid=1+ int.Parse(id);
                 p.pid=iid.ToString();
-            }
+            
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Enter Patient Name:");
             string name = Console.ReadLine();
@@ -74,9 +67,9 @@ namespace PatientDetails.Patients_Data
             p.phone = phone.ToString();
 
 
-            list.Add(p);
+            list1.Add(p);
 
-            string srt = JsonConvert.SerializeObject(list, Formatting.Indented);
+            string srt = JsonConvert.SerializeObject(list1, Formatting.Indented);
             File.WriteAllText(JsonDB, srt);
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Details added successfully.....");
@@ -132,9 +125,7 @@ namespace PatientDetails.Patients_Data
                 
             
         }
-
-
-        public void search(string pid)
+    public void search(string pid)
         {
             string Appoint = Environment.GetEnvironmentVariable("Appoints");
             string file = File.ReadAllText(Appoint);
@@ -143,6 +134,7 @@ namespace PatientDetails.Patients_Data
             string JsonDB = Environment.GetEnvironmentVariable("storePatient");
             string details = File.ReadAllText(JsonDB);
             List<Patients> list = JsonConvert.DeserializeObject<List<Patients>>(details);
+
             bool isfound = false;
             for (int i = 0; i < list.Count; i++)
             {
@@ -170,6 +162,7 @@ namespace PatientDetails.Patients_Data
             string JsonDB = Environment.GetEnvironmentVariable("storePatient");
             string details = File.ReadAllText(JsonDB);
             List<Patients> list = JsonConvert.DeserializeObject<List<Patients>>(details);
+
             bool isfound = false;
             for (int i = 0; i < list.Count; i++)
             {

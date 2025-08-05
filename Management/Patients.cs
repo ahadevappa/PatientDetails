@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace PatientDetails
 {
@@ -11,7 +12,6 @@ namespace PatientDetails
         public string pid;
         public string pname;
         public string phone;
-
     }
     
 }
