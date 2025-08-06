@@ -20,13 +20,16 @@ namespace PatientDetails.Patients_Data
                 int iid=1+ int.Parse(id);
                 p.pid=iid.ToString();
             
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Enter Patient Name:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             string name = Console.ReadLine();
 
             while (string.IsNullOrWhiteSpace(name))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Enter valid Patient Name:");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 name = Console.ReadLine();
 
 
@@ -39,11 +42,13 @@ namespace PatientDetails.Patients_Data
             while (true)
             {
                 Console.WriteLine("Enter patient phone number:");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 phoneString = Console.ReadLine();
 
 
                 if (string.IsNullOrWhiteSpace(phoneString) || phoneString.Length != 10)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("enter valid number.");
                     continue;
                 }
@@ -101,9 +106,11 @@ namespace PatientDetails.Patients_Data
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("The Patient Name :" + list[i].pname);
                     //Console.WriteLine("The Patient Phone :" + list[i].phone);
-                    Console.WriteLine("Enter your dieses:");
-                    ap.dieses = Console.ReadLine();
+                    Console.WriteLine("Enter your disease:");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    ap.disease = Console.ReadLine();
                     Console.WriteLine("Enter Date:");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     ap.date = Console.ReadLine();
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("Your appointment request sent successfuly.");
@@ -118,6 +125,7 @@ namespace PatientDetails.Patients_Data
             }
                     if (!isfound)
                     {
+                        Console.ForegroundColor= ConsoleColor.Red;
                         Console.WriteLine("Your not Register yet please register first!.");
                         register();
                     }
@@ -141,7 +149,7 @@ namespace PatientDetails.Patients_Data
                 if ( pid == list[i].pname)
                 {
                     isfound = true;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("The Patient id : " + list[i].pid);
                     Console.WriteLine("The Patient Name :" + list[i].pname);
                     Console.WriteLine("The Patient Phone :" + list[i].phone);
@@ -149,6 +157,7 @@ namespace PatientDetails.Patients_Data
             }
             if (!isfound)
             {
+                Console.ForegroundColor= ConsoleColor.Red;
                 Console.WriteLine("Your not Register yet please register first!.");
                 register();
             }
@@ -169,7 +178,7 @@ namespace PatientDetails.Patients_Data
                 if (pid ==int.Parse (list[i].pid))
                 {
                     isfound = true;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("The Patient id : " + list[i].pid);
                     Console.WriteLine("The Patient Name :" + list[i].pname);
                     Console.WriteLine("The Patient Phone :" + list[i].phone);
@@ -177,6 +186,7 @@ namespace PatientDetails.Patients_Data
             }
             if (!isfound)
             {
+                Console.ForegroundColor= ConsoleColor.Red;
                 Console.WriteLine("Your not Register yet please register first!.");
                 register();
             }

@@ -8,7 +8,7 @@ namespace PatientDetails
 {
     public class Appintments
     {
-        public string dieses;
+        public string disease;
         public string date;
 
     }

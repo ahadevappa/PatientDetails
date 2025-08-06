@@ -20,13 +20,17 @@ namespace PatientDetails
                     break;
 
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Enter Patient ID:");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     string pid = Console.ReadLine();
                     rg.logIN(pid);
                     break;
 
                 case 3:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Enter Patient ID or Patient Name:");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     string name = Console.ReadLine();
 
                     if (int.TryParse(name, out int id))

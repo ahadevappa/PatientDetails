@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arrow;
 
 namespace PatientDetails.Patients_Data
+
 {
     internal class Run
     {
@@ -19,7 +21,7 @@ namespace PatientDetails.Patients_Data
         };
             int selectedIndex = 0;
             int lastSelectedIndex = -1;
-            Arrow arrowHandler = new Arrow();
+            Arrow1 arrowHandler = new Arrow1();
             bool running = true;
 
             Console.CursorVisible = false;
@@ -54,6 +56,7 @@ namespace PatientDetails.Patients_Data
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Press any key to return to menu...");
                         Console.ReadKey(true);
                         Console.Clear();
@@ -77,6 +80,7 @@ namespace PatientDetails.Patients_Data
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Press any key to return to menu...");
                             Console.ReadKey(true);
                             Console.Clear();
@@ -88,18 +92,23 @@ namespace PatientDetails.Patients_Data
                 else if (key == ConsoleKey.Escape)
                 {
                     Console.Clear();
+                    Console.ForegroundColor= ConsoleColor.Magenta;
                     Console.WriteLine("Exiting...");
                     break;
                 }
             }
 
             Console.CursorVisible = true;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Program Ended. Press any key...");
             Console.ReadKey();
         }
 
         static void DisplayMenu(string[] items, int selectedIndex)
         {
+            
+            //int x=20, y=10;
+            //Console.SetCursorPosition(x, y);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("=== Hospital Management Menu ===");
             Console.ResetColor();
@@ -107,21 +116,23 @@ namespace PatientDetails.Patients_Data
 
             for (int i = 0; i < items.Length; i++)
             {
+               
                 if (i == selectedIndex)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.WriteLine($">> {i + 1}. {items[i]}");
                     Console.ResetColor();
+                   
                 }
                 else
                 {
                     Console.WriteLine($"   {i + 1}. {items[i]}");
-                }
+                } 
             }
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Use ↑ ↓ arrows or 1-4 keys. Press Enter to select, Esc to exit.");
+            
         }
     }
 }
- 
