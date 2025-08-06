@@ -106,11 +106,8 @@ namespace PatientDetails.Patients_Data
 
         static void DisplayMenu(string[] items, int selectedIndex)
         {
-            
-            //int x=20, y=10;
-            //Console.SetCursorPosition(x, y);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("=== Hospital Management Menu ===");
+            Console.WriteLine("=== Patient Management System ===");
             Console.ResetColor();
 
 
