@@ -106,30 +106,106 @@ namespace PatientDetails.Patients_Data
 
         static void DisplayMenu(string[] items, int selectedIndex)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("=== Patient Management System ===");
-            Console.ResetColor();
 
+            int windowwidth = 60;
+            int windowheight = 15;
 
-            for (int i = 0; i < items.Length; i++)
+            int x = (Console.WindowWidth-windowwidth)/2;
+            int y = (Console.WindowHeight - windowheight) / 2;
+
+            for (int i = 0; i < windowheight; i++)
+
             {
-               
-                if (i == selectedIndex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($">> {i + 1}. {items[i]}");
-                    Console.ResetColor();
-                   
-                }
+
+                Console.SetCursorPosition(x, y + i+2);
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                if (i == 0)
+
+                    
+                    Console.Write("╔" + new string('═', windowwidth - 2) + "╗");
+
+                else if (i == windowheight - 1)
+
+                    Console.Write("╚" + new string('═', windowwidth - 2) + "╝");
+
                 else
-                {
-                    Console.WriteLine($"   {i + 1}. {items[i]}");
-                } 
+
+                    Console.Write("║" + new string(' ', windowwidth - 2) + "║");
+
             }
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Use ↑ ↓ arrows or 1-4 keys. Press Enter to select, Esc to exit.");
+
+
+
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WriteLine("=== Patient Management System ===");
+            //Console.ResetColor();
+
+
+            //for (int i = 0; i < items.Length; i++)
+            //{
+
+            //    if (i == selectedIndex)
+            //    {
+            //        Console.ForegroundColor = ConsoleColor.Blue;
+            //        Console.BackgroundColor = ConsoleColor.Cyan;
+            //        Console.WriteLine($">> {i + 1}. {items[i]}");
+            //        Console.ResetColor();
+
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"   {i + 1}. {items[i]}");
+            //    } 
+            //}
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine("Use ↑ ↓ arrows or 1-4 keys. Press Enter to select, Esc to exit.");
+
+            //Console.Clear();
+                int windowWidth = Console.WindowWidth;
+                int windowHeight = Console.WindowHeight;
+
+                string title = "=== Patient Management System ===";
+                int boxWidth = 50;
+                int boxHeight = items.Length + 6; 
+                int startX = (windowWidth - boxWidth) / 2;
+                int startY = (windowHeight - boxHeight) / 2;
+
+                Console.SetCursorPosition(startX, startY);
+                Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(startX, startY + 1);
+                Console.SetCursorPosition(startX + (boxWidth - title.Length) / 2, startY + 1);
+                Console.ForegroundColor =(ConsoleColor) ConsoleColor.Green;
+                Console.Write(title);
+                Console.SetCursorPosition(startX + boxWidth - 1, startY + 5);
+
+                Console.SetCursorPosition(startX, startY + 2);
+
+                for (int i = 0; i < items.Length; i++)
+                {
+                    Console.SetCursorPosition(startX, startY + 3 + i);
+                    if (i == selectedIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                        Console.Write($">> {i + 1}. {items[i]}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write($"   {i + 1}. {items[i]}");
+                    }
+                Console.ForegroundColor = ConsoleColor.Red;
+                }
+
+                string instruction = "Use ↑ ↓ or 1-4. Enter=Select, Esc=Exit.";
+                Console.SetCursorPosition(startX + (boxWidth - instruction.Length) / 2, startY + 4 + items.Length);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine(instruction);
+                Console.ResetColor();
             
+
         }
     }
 }

@@ -10,9 +10,12 @@ namespace PatientDetails.Patients_Data
 {
     public class Operation
     {
+
         public void register()
         {
+            
             Patients p = new Patients();
+
             string JsonDB = Environment.GetEnvironmentVariable("storePatient");
             string details = File.ReadAllText(JsonDB);
             List<Patients> list1 = JsonConvert.DeserializeObject<List<Patients>>(details);
